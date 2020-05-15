@@ -45,17 +45,17 @@ public class Product {
         this._discount = _discount;
     }
 
-    Product(String productName, double unitPrice, double discount) {
+    public Product(String productName, double unitPrice, double discount) {
         this._productName = productName;
         this._unitPrice = unitPrice;
         this._discount = discount;
     }
 
-    Product(String productName, double unitPrice) {
+    public Product(String productName, double unitPrice) {
         this(productName, unitPrice, 0);
     }
 
-    Product(){}
+    public Product(){}
 
     private String _productName;
     private double _unitPrice;
