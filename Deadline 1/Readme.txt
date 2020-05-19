@@ -8,3 +8,8 @@ features:
     sort by mark
     import from csv
     export to csv
+
+Build:
+javac *.java
+jar -cfm baolong.jar build.mf *.class *.java
+java -jar bailing.jar
