@@ -28,17 +28,23 @@
 - ghi file lịch sử 
     + class Writer
 
-- class lịch sử tra cứu -> singleton 
-    + class History.java
+- class lịch sử tra cứu 
+    + class HistoryItem {
+        Word
+        Date
+    }
+    + class History.java -> singleton 
         * final fileName
-        * treemap<Word, date>
+        * arrayList<HistoryItem>
         * lưu file xml dạng này luôn :)
 
 - đọc file từ yêu thích 
     + class reader 
         * final fileName
+        * trả về arrayList<Word>
 
-- ghi file từ yêu thihcs 
+- ghi file từ yêu thihcs
+    + class Writer
 
 - class từ yêu thích -> singleton 
     + class Favorite.java 
@@ -104,3 +110,58 @@
 *************************** PROTOTYPE ****************************
 ==================================================================
 
+1. package com.java.model
+    1.1. Word         // just a few properties, constructor (optional), setter and getter
+    1.2. WordList     // just a few properties, constructor (optional), setter and getter
+        - cài đặt bằng singleton
+        - public void setList(TreeMap<String, String>)
+    1.3. MyDictionary // just a few properties, constructor (optional), setter and getter
+            - public void searchWord()
+            - private Word searchWord(String word)
+        - public void addWord()
+        - private void addWord(TreeMap<String, String>, Word)
+            - public void deleteWord()
+            - public void deleteWord(TreeMap<String, String>, Word)
+    1.4. History @XmlRootElement (name = "History")
+        - singleton
+        - arrayList<HistoryItem> @XmlElement(name = "list")
+            - public void statisticWord()
+            - private arrayList<HistoryItem> statisticWord(date1, date2)
+        - public static History getHistory()
+            - private void addHistoryItem(HistoryItem) -> ghi file ngay và luôn 
+            - public void addHistoryItem(Word)
+        - public void printHistory()
+        
+    1.5. Favorite @XmlRootElement (name = "Favorite")
+        - singleton
+        - arrayList<Word>
+        - public void addFavorite(Word) -> ghi file ngay và luôn 
+        - public void sort(bool isAZ?)
+        - private void sort(bool isAZ, arrayList<Word>)
+        - public void printFavorite()
+
+2. package com.java.handlefile
+    2.1. Writer.java
+        - public void writeDictionary(bool isAnh_Viet?): 
+            + chuyển cây sang arrayList
+            + ghi tù mới (từ WordList) vào trong file từ điển
+        - public void writeHistory(): ghi thẳng vào file từ arrayList của History
+        - public void writeFavorite(): ghi thẳng vào file từ arrayList của Favorite
+    2.2. Reader
+        - public void readDictionary(bool isAnh_Viet?): 
+            + đọc từ from file từ điển vào WordList
+            + gán WordList vào treeMap
+        - public void readHistory(): đọc thằng vào arraylist của History
+        - public void readFavorite(): đọc thằng vào arraylist của Favorite
+
+3. package com.java.main
+    3.1. Loader.java (gọi lại các hàm của Reader.java)
+        - private loadDictionary(bool isAnh_Viet?)
+        - private loadHistory()
+        - private loadFavorite()
+        - public loadData(): gọi lại các hàm private bên trên :v
+    3.2. Saver.java (gọi lại các hàm của Writer)
+        - private saveDictionary(bool isAnh_Viet?)
+        - private saveHistory()
+        - private saveFavorite()
+        - public save(): gọi lại các hàm private bên trên 
