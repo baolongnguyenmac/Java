@@ -16,6 +16,10 @@ public class Favorite {
         _wordList = new ArrayList<>();
     }
 
+    public ArrayList<Word> get_wordList() {
+        return _wordList;
+    }
+
     public static Favorite get_instance() {
         if (_instance == null) {
             _instance = new Favorite();
