@@ -18,6 +18,10 @@ public class History {
         _historyList = new ArrayList<>();
     }
 
+    public ArrayList<HistoryItem> get_historyList() {
+        return _historyList;
+    }
+
     public static History get_instance() {
         if (_instance == null) {
             _instance = new History();
