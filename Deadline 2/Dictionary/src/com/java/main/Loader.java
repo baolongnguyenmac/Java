@@ -9,4 +9,9 @@ public class Loader {
         r.readFavorite();
         r.readHistory();
     }
+
+    public void loadDictionary (boolean isAnh_Viet) {
+        Reader r = new Reader();
+        r.readDictionary(isAnh_Viet);
+    }
 }
