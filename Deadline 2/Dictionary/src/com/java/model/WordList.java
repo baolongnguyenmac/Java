@@ -1,6 +1,6 @@
 package com.java.model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.xml.bind.annotation.*;
 
@@ -8,14 +8,35 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class WordList {
-    @XmlElement(name = "record")
-    private ArrayList<Word> bookList;
+    private static WordList _instance = null;
 
-    public void setBookList(ArrayList<Word> bookList) {
-        this.bookList = bookList;
+    @XmlElement(name = "record")
+    private ArrayList<Word> _wordList;
+
+    private WordList() {
+        _wordList = new ArrayList<>();
     }
 
-    public ArrayList<Word> getBooksList() {
-        return bookList;
+    public static WordList get_instance() {
+        if (_instance == null) {
+            _instance = new WordList();
+        }
+        return _instance;
+    }
+
+    public void set_wordList(ArrayList<Word> _wordList) {
+        this._wordList = _wordList;
+    }
+
+    public ArrayList<Word> get_wordList() {
+        return _wordList;
+    }
+
+    public void set_wordList(TreeMap<String, String> treeMap) {
+        _wordList.clear();
+        for(Map.Entry<String, String> entry : treeMap.entrySet()) {
+            Word temp = new Word(entry.getKey(), entry.getValue());
+            _wordList.add(temp);
+        }
     }
 }
