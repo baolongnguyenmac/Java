@@ -1,9 +1,9 @@
 package com.java.model;
 
+import java.io.*;
 import javax.xml.bind.annotation.*;
 
-@XmlRootElement //(name = "record")
-// @XmlType(propOrder = { "_word", "_meaning"})
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Word implements Comparable<Word> {
 
@@ -11,6 +11,11 @@ public class Word implements Comparable<Word> {
     private String _word;
     @XmlElement (name = "meaning")
     private String _meaning;
+
+    public Word(String word, String meaning) {
+        _word = word;
+        _meaning = meaning;
+    }
 
     public String get_word() {
         return _word;
@@ -31,5 +36,28 @@ public class Word implements Comparable<Word> {
     @Override
     public int compareTo(Word o) {
         return this._word.compareTo(o._word);
+    }
+
+    public static String inputStringUTF8() {
+        BufferedReader br = null;
+        String key = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(System.in, "utf8"));
+            key = br.readLine();
+        }
+        catch (IOException e) {
+            System.err.println(e);
+        }
+        finally {
+            if (br != null) {
+                try {
+                    br.close();
+                }
+                catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
+        }
+        return key;
     }
 }
