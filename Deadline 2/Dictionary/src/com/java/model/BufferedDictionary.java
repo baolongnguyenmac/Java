@@ -1,16 +1,17 @@
 package com.java.model;
 
 import java.util.*;
+import java.io.*;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement (name = "dictionary")
-public class BufferDictionary {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class BufferedDictionary {
     @XmlElement (name = "record")
     private ArrayList<Word> _wordList;
 
-    public BufferDictionary() {
+    public BufferedDictionary() {
         _wordList = new ArrayList<>();
     }
 
@@ -27,6 +28,7 @@ public class BufferDictionary {
 }
 
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 class Word {
     @XmlElement (name = "word")
     private String _word;
@@ -54,5 +56,16 @@ class Word {
 
     public void setMeaning(String meaning) {
         _meaning = meaning;
+    }
+
+    public static String inputUTF8(BufferedReader br) {
+        String str = null;
+        try {
+            str = br.readLine();
+        }
+        catch (IOException e) {
+            System.err.println("io error");
+        }
+        return str;
     }
 }
