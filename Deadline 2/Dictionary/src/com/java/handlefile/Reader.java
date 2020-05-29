@@ -15,47 +15,53 @@ public class Reader {
     public static final String Viet_Anh_FILENAME = "Viet_Anh.xml";
 
     public void readDictionary() {
-        BufferDictionary list = new BufferDictionary();
+        BufferedDictionary list = new BufferedDictionary();
         MyDictionary dictionary = MyDictionary.getDictionary();
 
         try {
-            JAXBContext context = JAXBContext.newInstance(BufferDictionary.class);
+            JAXBContext context = JAXBContext.newInstance(BufferedDictionary.class);
             Unmarshaller um = context.createUnmarshaller();
-            list = (BufferDictionary) um.unmarshal(new BufferedReader(
+            list = (BufferedDictionary) um.unmarshal(new BufferedReader(
                                                         new InputStreamReader(
                                                             new FileInputStream(Anh_Viet_FILENAME), "utf8")));
             dictionary.setDictionary(list.getWordList(), true);
 
-            list = (BufferDictionary) um.unmarshal(new BufferedReader(
+            list = (BufferedDictionary) um.unmarshal(new BufferedReader(
                                                         new InputStreamReader(
                                                             new FileInputStream(Viet_Anh_FILENAME), "utf8")));
             dictionary.setDictionary(list.getWordList(), false);
         }
         catch (JAXBException e) {
-            System.err.println(e);
+            // System.err.println(e);
+            System.err.println("jaxb error <writeDictionary>");
         }
         catch (IOException e) {
-            System.err.println(e);
+            // System.err.println(e);
+            System.err.println("io error <writeDictionary>");
         }
     }
 
-    // public void readHistory() {
-    //     History h = History.get_instance();
+    public void readHistory() {
+        History history = History.getHistory();
+        BufferedHistory list = new BufferedHistory();
 
-    //     try {
-    //         JAXBContext context = JAXBContext.newInstance(History.class);
-    //         Unmarshaller um = context.createUnmarshaller();
-    //         h = (History) um.unmarshal(new BufferedReader(
-    //                                     new InputStreamReader(
-    //                                         new FileInputStream(HISTORY_FILENAME), "utf8")));
-    //     }
-    //     catch (IOException e) {
-    //         System.err.println(e);
-    //     }
-    //     catch (JAXBException e) {
-    //         System.err.println(e);
-    //     }
-    // }
+        try {
+            JAXBContext context = JAXBContext.newInstance(BufferedHistory.class);
+            Unmarshaller um = context.createUnmarshaller();
+            list = (BufferedHistory) um.unmarshal(new BufferedReader(
+                                            new InputStreamReader(
+                                                new FileInputStream(HISTORY_FILENAME), "utf8")));
+            history.setHistory(list.getListHistoryItem());
+        }
+        catch (IOException e) {
+            // System.err.println(e);
+            System.err.println("io error <readHistory>");
+        }
+        catch (JAXBException e) {
+            // System.err.println(e);
+            System.err.println("jaxb error <readHistory>");
+        }
+    }
 
     // public void readFavorite() {
     //     Favorite f = Favorite.get_instance();
