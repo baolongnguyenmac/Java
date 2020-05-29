@@ -10,13 +10,14 @@ import com.java.model.*;
 
 public class Writer {
     public void writeDictionary() {
-        BufferDictionary list = new BufferDictionary();
+        BufferedDictionary list = new BufferedDictionary();
 
         try {
-            list.setWordList(MyDictionary.getDictionary().getDictionary(true));
-            JAXBContext context = JAXBContext.newInstance(BufferDictionary.class);
+            JAXBContext context = JAXBContext.newInstance(BufferedDictionary.class);
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            list.setWordList(MyDictionary.getDictionary().getDictionary(true));
             m.marshal(list, new BufferedWriter(
                                     new OutputStreamWriter(
                                         new FileOutputStream(Reader.Anh_Viet_FILENAME), "utf8")));
@@ -27,29 +28,36 @@ public class Writer {
                                         new FileOutputStream(Reader.Viet_Anh_FILENAME), "utf8")));
         }
         catch (JAXBException e) {
-            System.err.println(e);
+            // System.err.println(e);
+            System.err.println("jaxb error <writeDictionary>");
         }
         catch (IOException e) {
-            System.err.println(e);
+            // System.err.println(e);
+            System.err.println("io error <writeDictionary>");
         }
     }
 
-    // public void writeHistory() {
-    //     try {
-    //         JAXBContext context = JAXBContext.newInstance(History.class);
-    //         Marshaller m = context.createMarshaller();
-    //         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    //         m.marshal(History.get_instance().get_historyList(), new BufferedWriter(
-    //                                 new OutputStreamWriter(
-    //                                     new FileOutputStream(Reader.HISTORY_FILENAME), "utf8")));
-    //     }
-    //     catch (JAXBException e) {
-    //         System.err.println(e);
-    //     }
-    //     catch (IOException e) {
-    //         System.err.println(e);
-    //     }
-    // }
+    public void writeHistory() {
+        BufferedHistory list = new BufferedHistory();
+        list.setListHistoryItem(History.getHistory().getListHistory());
+
+        try {
+            JAXBContext context = JAXBContext.newInstance(BufferedHistory.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            m.marshal(list, new BufferedWriter(
+                                                    new OutputStreamWriter(
+                                                        new FileOutputStream(Reader.HISTORY_FILENAME), "utf8")));
+        }
+        catch (JAXBException e) {
+            // System.err.println(e);
+            System.err.println("jaxb error <writeHistory>");
+        }
+        catch (IOException e) {
+            // System.err.println(e);
+            System.err.println("io error <writeHistory>");
+        }
+    }
 
     // public void writeFavorite() {
     //     try {
