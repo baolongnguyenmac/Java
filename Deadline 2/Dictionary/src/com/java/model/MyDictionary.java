@@ -1,6 +1,7 @@
 package com.java.model;
 
 import java.util.*;
+
 import java.io.*;
 
 public class MyDictionary {
@@ -30,11 +31,13 @@ public class MyDictionary {
 
     public void setDictionary(ArrayList<Word> wordList, boolean isAnh_Viet) {
         if (isAnh_Viet) {
+            _Anh_VietDictionary.clear();
             for (Word w: wordList) {
                 _Anh_VietDictionary.put(w.getWord(), w.getMeaning());
             }
         }
         else {
+            _Viet_AnhDictionary.clear();
             for (Word w: wordList) {
                 _Viet_AnhDictionary.put(w.getWord(), w.getMeaning());
             }
@@ -53,10 +56,19 @@ public class MyDictionary {
             }
             else {
                 System.out.println(w.getMeaning());
+                addFavorite(new Scanner(System.in), str, w);
             }
         }
         catch (IOException e) {
             System.err.println("io error <searchWord>");
+        }
+    }
+
+    private void addFavorite(Scanner sc, String str, Word word) {
+        System.out.print("Add " + str + " to favorite list? (y/n): ");
+        String add = sc.nextLine();
+        if (add.equals("y") || add.equals("Y")) {
+            Favorite.getFavorite().addWord(word);
         }
     }
 
