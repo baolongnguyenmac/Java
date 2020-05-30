@@ -29,7 +29,7 @@ public class BufferedDictionary {
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-class Word {
+class Word implements Comparable<Word> {
     @XmlElement (name = "word")
     private String _word;
     @XmlElement (name = "meaning")
@@ -67,5 +67,10 @@ class Word {
             System.err.println("io error");
         }
         return str;
+    }
+
+    @Override
+    public int compareTo(Word o) {
+        return _word.compareTo(o._word);
     }
 }
