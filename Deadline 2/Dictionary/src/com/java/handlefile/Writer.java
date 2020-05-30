@@ -46,8 +46,8 @@ public class Writer {
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             m.marshal(list, new BufferedWriter(
-                                                    new OutputStreamWriter(
-                                                        new FileOutputStream(Reader.HISTORY_FILENAME), "utf8")));
+                                new OutputStreamWriter(
+                                    new FileOutputStream(Reader.HISTORY_FILENAME), "utf8")));
         }
         catch (JAXBException e) {
             // System.err.println(e);
@@ -59,20 +59,25 @@ public class Writer {
         }
     }
 
-    // public void writeFavorite() {
-    //     try {
-    //         JAXBContext context = JAXBContext.newInstance(Favorite.class);
-    //         Marshaller m = context.createMarshaller();
-    //         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-    //         m.marshal(Favorite.get_instance().get_wordList(), new BufferedWriter(
-    //                                 new OutputStreamWriter(
-    //                                     new FileOutputStream(Reader.FAVORITE_FILENAME), "utf8")));
-    //     }
-    //     catch (JAXBException e) {
-    //         System.err.println(e);
-    //     }
-    //     catch (IOException e) {
-    //         System.err.println(e);
-    //     }
-    // }
+    public void writeFavorite() {
+        BufferedFavorite list = new BufferedFavorite();
+        list.setListFavorite(Favorite.getFavorite().getListFavorite());
+
+        try {
+            JAXBContext context = JAXBContext.newInstance(BufferedFavorite.class);
+            Marshaller m = context.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            m.marshal(list, new BufferedWriter(
+                                new OutputStreamWriter(
+                                    new FileOutputStream(Reader.FAVORITE_FILENAME), "utf8")));
+        }
+        catch (JAXBException e) {
+            // System.err.println(e);
+            System.out.println("jaxb error <writeFavorite>");
+        }
+        catch (IOException e) {
+            // System.err.println(e);
+            System.err.println("io error <writeFavorite>");
+        }
+    }
 }
