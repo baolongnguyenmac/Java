@@ -63,21 +63,23 @@ public class Reader {
         }
     }
 
-    // public void readFavorite() {
-    //     Favorite f = Favorite.get_instance();
+    public void readFavorite() {
+        Favorite favorite = Favorite.getFavorite();
+        BufferedFavorite list = new BufferedFavorite();
 
-    //     try {
-    //         JAXBContext context = JAXBContext.newInstance(Favorite.class);
-    //         Unmarshaller um = context.createUnmarshaller();
-    //         f = (Favorite) um.unmarshal(new BufferedReader(
-    //                                     new InputStreamReader(
-    //                                         new FileInputStream(FAVORITE_FILENAME), "utf8")));
-    //     }
-    //     catch (IOException e) {
-    //         System.err.println(e);
-    //     }
-    //     catch (JAXBException e) {
-    //         System.err.println(e);
-    //     }
-    // }
+        try {
+            JAXBContext context = JAXBContext.newInstance(BufferedFavorite.class);
+            Unmarshaller um = context.createUnmarshaller();
+            list = (BufferedFavorite) um.unmarshal(new BufferedReader(
+                                                        new InputStreamReader(
+                                                            new FileInputStream(FAVORITE_FILENAME), "utf8")));
+            favorite.setListFavorite(list.getListFavorite());
+        }
+        catch (IOException e) {
+            System.err.println(e);
+        }
+        catch (JAXBException e) {
+            System.err.println(e);
+        }
+    }
 }
