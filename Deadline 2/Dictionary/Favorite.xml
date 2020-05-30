@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <favorite>
     <item>
-        <word>nhớ</word>
-        <meaning>@nhớ
-* verb
-- to remember; to recall; to call in mind
-=tôi không nhớ việc ấy+I do not remember it
-=nhớ đừng đến trễ nhé+Mind you're not late!
+        <word>An Nam</word>
+        <meaning>@An Nam
+- Vietnam was named An Nam under the Chinese and French dominations
 
 </meaning>
     </item>
@@ -20,11 +17,59 @@
 </meaning>
     </item>
     <item>
+        <word>hell</word>
+        <meaning>@hell /hel/
+*  danh từ
+- địa ngục, âm ti; nơi tối tăm khổ cực
+=life is a hell under colonialism+ dưới ách thực dân cuộc sống làm một địa ngục
+=hell on earth+ địa ngục trần gian
+- chỗ giam những người bị bắt (trong trò chơi bắt tù binh của trẻ con)
+- sòng bạc
+- quỷ, đồ chết tiệt (trong câu rủa)
+=hell!+ chết tiệt!
+=what the hell do you want?+ mày muốn cái chết tiệt gì?
+=to go hell!+ đồ chết tiệt!, quỷ tha ma bắt mày đi!
+!a hell of a...
+- kinh khủng, ghê khiếp, không thể chịu được
+=a hell of a way+ đường xa kinh khủng
+=a hell of a noise+ tiếng ồn ào không thể chịu được
+!to give somebody hell
+- đày đoạ ai, làm ai điêu đứng
+- xỉ vả ai, mắng nhiếc ai
+!like hell
+- hết sức mình, chết thôi
+=to work like hell+ làm việc chết thôi
+=to run like hell+ chạy chết thôi, chạy như ma đuổi
+!to ride hell for leather
+- (xem) ride
+
+</meaning>
+    </item>
+    <item>
         <word>lắm</word>
         <meaning>@lắm
 * adv. much; many; very; a lot
 =tôi yêu cô ta lắm+I'm very love of her
 =lắm lần+many times
+
+</meaning>
+    </item>
+    <item>
+        <word>nhớ</word>
+        <meaning>@nhớ
+* verb
+- to remember; to recall; to call in mind
+=tôi không nhớ việc ấy+I do not remember it
+=nhớ đừng đến trễ nhé+Mind you're not late!
+
+</meaning>
+    </item>
+    <item>
+        <word>đĩ</word>
+        <meaning>@đĩ
+* noun
+- prostitude; courtesan
+=đĩ thoã+wanton
 
 </meaning>
     </item>
