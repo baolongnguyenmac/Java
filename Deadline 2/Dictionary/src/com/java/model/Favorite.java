@@ -38,5 +38,23 @@ public class Favorite {
         _listFavorite.add(w);
     }
 
-    
+    public void sort(boolean isAZ) {
+        if (isAZ) {
+            Collections.sort(_listFavorite);
+        }
+        else {
+            Collections.sort(_listFavorite, Collections.reverseOrder());
+        }
+    }
+
+    public void printList(boolean isAZ) {
+        int count = 0;
+        sort(isAZ);
+        for (Word w: _listFavorite) {
+            count++;
+            System.out.print(count + ".\t");
+            System.out.println(w.getWord());
+            System.out.println(w.getMeaning());
+        }
+    }
 }
