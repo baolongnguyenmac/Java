@@ -1,2 +1,3 @@
-# Java
-my code when i started learning java
+# Java  
+
+My code when i started learning java
