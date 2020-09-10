@@ -12,6 +12,6 @@
 
 ## Build  
 
-`javac *.java`  
-`jar -cfm baolong.jar build.mf *.class *.java`  
-`java -jar bailing.jar`  
+1. `javac *.java`  
+2. `jar -cfm baolong.jar build.mf *.class *.java`  
+3. `java -jar bailing.jar`  
